@@ -1,0 +1,8 @@
+# Ignore data and model artifacts
+data/processed/
+models/
+__pycache__/
+*.pkl
+*.joblib
+*.dvc
+mlruns/
