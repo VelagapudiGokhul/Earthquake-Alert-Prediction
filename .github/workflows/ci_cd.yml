@@ -25,14 +25,23 @@ jobs:
           pip install -r requirements.txt
           pip install pytest joblib
 
+      - name: Set PYTHONPATH
+        run: echo "PYTHONPATH=$GITHUB_WORKSPACE" >> $GITHUB_ENV
+
+      - name: Run preprocessing tests
+        run: pytest tests/test_preprocessing.py
+
+      - name: Run data validation tests
+        run: pytest tests/test_data_validation.py
+
+      - name: Run model validation tests
+        run: pytest tests/test_model_validation.py
+
       - name: Run preprocessing
         run: python src/preprocessing.py
 
       - name: Train model
         run: python src/train_model.py
-
-      - name: Run unit tests
-        run: pytest tests/
 
       - name: Save trained model artifact
         uses: actions/upload-artifact@v4
